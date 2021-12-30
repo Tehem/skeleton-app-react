@@ -1,5 +1,9 @@
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux'
 
-const reducers = {};
+import { intlWrapperReducer } from '../components/IntlWrapper/IntlWrapperSlice'
 
-export const store = createStore(combineReducers(reducers));
+const reducers = {
+    i18n: intlWrapperReducer,
+}
+
+export const store = createStore(combineReducers(reducers))
