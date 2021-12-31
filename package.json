@@ -8,11 +8,13 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
+    "@chakra-ui/icons": "^1.1.1",
     "@chakra-ui/react": "^1.7.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@fortawesome/fontawesome-pro": "/Users/tehem/Dev/assets/fontawesome-pro-5.15.4-web/npm/fortawesome-fontawesome-pro-5.15.4.tgz",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/pro-light-svg-icons": "/Users/tehem/Dev/assets/fontawesome-pro-5.15.4-web/npm/fortawesome-pro-light-svg-icons-5.15.4.tgz",
     "@fortawesome/pro-regular-svg-icons": "/Users/tehem/Dev/assets/fontawesome-pro-5.15.4-web/npm/fortawesome-pro-regular-svg-icons-5.15.4.tgz",
@@ -22,7 +24,8 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intl": "^5.24.0",
-    "react-redux": "^7.2.6"
+    "react-redux": "^7.2.6",
+    "react-router-dom": "6"
   },
   "devDependencies": {
     "@types/react": "^17.0.33",

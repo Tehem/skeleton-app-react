@@ -1,5 +1,6 @@
 {
   "app.title": "Application demo française",
   "app.auth.login": "Connexion",
-  "app.auth.logout": "Déconnexion"
+  "app.auth.logout": "Déconnexion",
+  "routes.about": "A propos"
 }

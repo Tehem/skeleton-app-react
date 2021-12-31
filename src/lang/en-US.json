@@ -1,5 +1,6 @@
 {
   "app.title": "English Demo Application",
   "app.auth.login": "Log in",
-  "app.auth.logout": "Log out"
+  "app.auth.logout": "Log out",
+  "routes.about": "About this site"
 }

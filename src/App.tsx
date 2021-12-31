@@ -1,24 +1,18 @@
-import { useState, useContext } from 'react'
-import { FormattedMessage } from 'react-intl'
+import { FormattedMessage } from 'react-intl';
+import { Outlet, Link as ReactLink } from 'react-router-dom';
 
-import { motion } from 'framer-motion'
-import { Box, Button, Flex, Image, Link, Text, Select } from '@chakra-ui/react'
+import { motion } from 'framer-motion';
+import { Box, Flex, Image, Link, Text } from '@chakra-ui/react';
 
-import { IntlContext } from './components/IntlWrapper/IntlWrapper'
+import NavBar from './components/NavBar/NavBar';
+import Footer from './components/Footer/Footer';
 
-import Profile from './components/Auth0/Profile'
-import ThemeToggleButton from './components/ThemeToggleButton/ThemeToggleButton'
-
-import logo from './logo.svg'
-
-const textFontSizes = [16, 18, 24, 30]
+import logo from './logo.svg';
 
 function App() {
-    const [count, setCount] = useState(0)
-    const context = useContext(IntlContext)
-
     return (
         <Box>
+            <NavBar />
             <Flex
                 as="header"
                 direction="column"
@@ -37,68 +31,31 @@ function App() {
                 >
                     <Image src={logo} alt="logo" h="40vmin" />
                 </motion.div>
-                <Text fontSize={textFontSizes}>
-                    Hello Vite + React + Typescript + Chakra UI!
-                </Text>
-                <Button
-                    colorScheme="blue"
-                    fontSize={textFontSizes}
-                    onClick={() => setCount((c) => c + 1)}
-                    marginTop="2"
-                >
-                    count is: {count}
-                </Button>
-                <Text fontSize={textFontSizes}>
+                <Text>Hello Vite + React + Typescript + Chakra UI!</Text>
+
+                <Text>
                     <FormattedMessage
                         id="app.title"
                         defaultMessage="default app message"
                     />
                 </Text>
-                <Text fontSize={textFontSizes}>
+                <Text>
                     Edit <code>App.tsx</code> and save to test HMR updates.
                 </Text>
-                <Select
-                    placeholder="Select option"
-                    value={context.locale}
-                    onChange={context.onLocaleChange}
-                >
-                    <option value="en-US">English</option>
-                    <option value="fr-FR">French</option>
-                </Select>
-                <Profile />
-                <Text fontSize={textFontSizes}>
-                    <Link href="https://reactjs.org" isExternal color="#61dafb">
-                        Learn React
+
+                <nav>
+                    <Link to="/about" as={ReactLink}>
+                        <FormattedMessage
+                            id="routes.about"
+                            defaultMessage="About page"
+                        />
                     </Link>
-                    {' | '}
-                    <Link
-                        href="https://vitejs.dev/guide/features.html"
-                        isExternal
-                        color="#61dafb"
-                    >
-                        Vite Docs
-                    </Link>
-                    {' | '}
-                    <Link
-                        href="https://www.typescriptlang.org/"
-                        isExternal
-                        color="#61dafb"
-                    >
-                        Typescript
-                    </Link>
-                    {' | '}
-                    <Link
-                        href="https://chakra-ui.com"
-                        isExternal
-                        color="#61dafb"
-                    >
-                        Chakra UI
-                    </Link>
-                </Text>
+                </nav>
+                <Outlet />
             </Flex>
-            <ThemeToggleButton pos="fixed" bottom="2" right="2" />
+            <Footer />
         </Box>
-    )
+    );
 }
 
-export default App
+export default App;
