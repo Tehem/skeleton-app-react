@@ -1,3 +1,5 @@
 {
-  "app.title": "Application demo française"
+  "app.title": "Application demo française",
+  "app.auth.login": "Connexion",
+  "app.auth.logout": "Déconnexion"
 }

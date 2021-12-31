@@ -3,6 +3,8 @@ import { FormattedMessage } from 'react-intl'
 
 import { IntlContext } from './components/IntlWrapper/IntlWrapper'
 
+import Profile from './components/Auth0/Profile'
+
 import logo from './logo.svg'
 import './App.css'
 
@@ -40,6 +42,9 @@ function App() {
                 </p>
                 <p>
                     Edit <code>App.tsx</code> and save to test HMR updates.
+                </p>
+                <p>
+                    <Profile />
                 </p>
                 <p>
                     <a

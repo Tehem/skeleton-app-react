@@ -1,3 +1,5 @@
 {
-  "app.title": "English Demo Application"
+  "app.title": "English Demo Application",
+  "app.auth.login": "Log in",
+  "app.auth.logout": "Log out"
 }
