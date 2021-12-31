@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-
+import { Link } from 'react-router-dom';
 import {
     Avatar,
     Button,
@@ -8,8 +8,12 @@ import {
     Menu,
     MenuButton,
     MenuDivider,
+    MenuItem,
     MenuList,
 } from '@chakra-ui/react';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/pro-regular-svg-icons';
 
 import LoginButton from './LoginButton';
 import { LogoutMenuItem } from './LogoutButton';
@@ -18,7 +22,12 @@ const Profile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
 
     if (isLoading) {
-        return <div>Loading ...</div>;
+        return (
+            <div>
+                <FontAwesomeIcon icon={faSpinner} size="lg" spin />
+                Loading...
+            </div>
+        );
     }
 
     return (
@@ -43,6 +52,9 @@ const Profile = () => {
                         <p>{user.name}</p>
                     </Center>
                     <br />
+                    <MenuItem>
+                        <Link to="profile">Profile</Link>
+                    </MenuItem>
                     <MenuDivider />
                     <LogoutMenuItem />
                 </MenuList>
