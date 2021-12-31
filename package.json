@@ -8,7 +8,11 @@
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.8.0",
+    "@chakra-ui/react": "^1.7.3",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@reduxjs/toolkit": "^1.7.1",
+    "framer-motion": "^5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-intl": "^5.24.0",

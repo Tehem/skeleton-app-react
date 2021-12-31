@@ -1,14 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
+
 import { Auth0Provider } from '@auth0/auth0-react'
+import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 
 import { IntlWrapper } from './components/IntlWrapper/IntlWrapper'
 
-import './index.css'
 import { store } from './app/store'
 import config from './config'
+
 import App from './App'
+import theme from './theme'
 
 ReactDOM.render(
     <React.StrictMode>
@@ -19,7 +22,12 @@ ReactDOM.render(
                 redirectUri={window.location.origin}
             >
                 <IntlWrapper>
-                    <App />
+                    <ChakraProvider theme={theme}>
+                        <ColorModeScript
+                            initialColorMode={theme.config.initialColorMode}
+                        />
+                        <App />
+                    </ChakraProvider>
                 </IntlWrapper>
             </Auth0Provider>
         </Provider>
