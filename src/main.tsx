@@ -8,7 +8,7 @@ import { ChakraProvider, ColorModeScript } from '@chakra-ui/react';
 import ProviderWithHistory from './components/Auth0/ProviderWithHistory';
 import { IntlWrapper } from './components/IntlWrapper/IntlWrapper';
 
-import { store } from './app/store';
+import store from './app/store';
 
 //routes
 import App from './App';

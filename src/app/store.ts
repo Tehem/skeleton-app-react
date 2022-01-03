@@ -1,9 +1,9 @@
-import { createStore, combineReducers } from 'redux'
+import { configureStore } from '@reduxjs/toolkit';
 
-import { intlWrapperReducer } from '../components/IntlWrapper/IntlWrapperSlice'
+import intlWrapperReducer from '../components/IntlWrapper/IntlWrapperSlice';
 
-const reducers = {
-    i18n: intlWrapperReducer,
-}
-
-export const store = createStore(combineReducers(reducers))
+export default configureStore({
+    reducer: {
+        i18n: intlWrapperReducer,
+    },
+});
