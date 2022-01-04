@@ -1,60 +1,37 @@
 import { FormattedMessage } from 'react-intl';
-import { Outlet, Link as ReactLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
 
-import { motion } from 'framer-motion';
-import { Box, Flex, Image, Link, Text } from '@chakra-ui/react';
-
-import NavBar from './components/NavBar/NavBar';
+import { selectColorMode } from './components/ColorMode/ColorModeSlice';
 import Footer from './components/Footer/Footer';
-
-import logo from './logo.svg';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
+    const colorMode = useSelector(selectColorMode);
     return (
-        <Box>
+        <div
+            data-theme={colorMode}
+            className="container mx-auto sm:px-6 lg:px-8"
+        >
             <NavBar />
-            <Flex
-                as="header"
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-                h="100vh"
-                fontSize="3xl"
-            >
-                <motion.div
-                    animate={{ rotateZ: 360 }}
-                    transition={{
-                        repeat: Infinity,
-                        duration: 20,
-                        ease: 'linear',
-                    }}
-                >
-                    <Image src={logo} alt="logo" h="40vmin" />
-                </motion.div>
-                <Text>Hello Vite + React + Typescript + Chakra UI!</Text>
+            <div className="relative">
+                <div>Hello Vite + React + Typescript + Chakra UI!</div>
 
-                <Text>
+                <div>
                     <FormattedMessage
                         id="app.title"
                         defaultMessage="default app message"
                     />
-                </Text>
-                <Text>
-                    Edit <code>App.tsx</code> and save to test HMR updates.
-                </Text>
-
-                <nav>
-                    <Link to="/about" as={ReactLink}>
-                        <FormattedMessage
-                            id="routes.about"
-                            defaultMessage="About page"
-                        />
-                    </Link>
-                </nav>
+                </div>
+                <h1 className="text-3xl font-bold">Hello world!</h1>
+                <div>
+                    Edit again <code>App.tsx</code> and save to test HMR
+                    updates.
+                </div>
                 <Outlet />
-            </Flex>
+            </div>
             <Footer />
-        </Box>
+        </div>
     );
 }
 

@@ -1,91 +1,105 @@
-import {
-    Box,
-    Flex,
-    Text,
-    IconButton,
-    Stack,
-    Collapse,
-    useColorModeValue,
-    useBreakpointValue,
-    useDisclosure,
-} from '@chakra-ui/react';
-import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { useSelector } from 'react-redux';
+import { Disclosure } from '@headlessui/react';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
 
-import Profile from '../Auth0/Profile';
+import { Profile, MobileProfile } from './Profile';
+import { NavBarButtonLink, NavBarLink } from './NavBarLink';
+import ColorModeToggleButton from '../ColorMode/ColorModeToggleButton';
+import { selectColorMode } from '../ColorMode/ColorModeSlice';
 
-import { NAV_ITEMS } from './navigation';
-import { MobileNav } from './MobileNav';
-import { DesktopNav } from './DesktopNav';
-import ThemeToggleButton from '../ThemeToggleButton/ThemeToggleButton';
+import SearchBar from './SearchBar';
+
+// const NavBarLinks = [
+//     { label: 'Dashboard', to: '/dashboard' },
+//     { label: 'Team', to: '/team' },
+//     { label: 'Projects', to: '/projects' },
+//     { label: 'Calendar', to: '/calendar' },
+// ];
 
 export default function NavBar() {
-    const { isOpen, onToggle } = useDisclosure();
-
+    const colorMode = useSelector(selectColorMode);
+    const logoUrl =
+        colorMode === 'light'
+            ? 'https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg'
+            : 'https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg';
     return (
-        <Box>
-            <Flex
-                bg={useColorModeValue('white', 'gray.800')}
-                color={useColorModeValue('gray.600', 'white')}
-                minH={'60px'}
-                py={{ base: 2 }}
-                px={{ base: 4 }}
-                borderBottom={1}
-                borderStyle={'solid'}
-                borderColor={useColorModeValue('gray.200', 'gray.900')}
-                align={'center'}
-            >
-                <Flex
-                    flex={{ base: 1, md: 'auto' }}
-                    ml={{ base: -2 }}
-                    display={{ base: 'flex', md: 'none' }}
-                >
-                    <IconButton
-                        onClick={onToggle}
-                        icon={
-                            isOpen ? (
-                                <CloseIcon w={3} h={3} />
-                            ) : (
-                                <HamburgerIcon w={5} h={5} />
-                            )
-                        }
-                        variant={'ghost'}
-                        aria-label={'Toggle Navigation'}
-                    />
-                </Flex>
-                <Flex
-                    flex={{ base: 1 }}
-                    justify={{ base: 'center', md: 'start' }}
-                >
-                    <Text
-                        textAlign={useBreakpointValue({
-                            base: 'center',
-                            md: 'left',
-                        })}
-                        fontFamily={'heading'}
-                        color={useColorModeValue('gray.800', 'white')}
-                    >
-                        Logo
-                    </Text>
+        <Disclosure as="nav" className="shadow bg-base-200 text-base-content">
+            {({ open }) => (
+                <>
+                    <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8">
+                        <div className="relative flex items-center justify-between h-16">
+                            <div className="flex items-center px-2 lg:px-0">
+                                <div className="flex-shrink-0">
+                                    <img
+                                        className="block lg:hidden h-8 w-auto"
+                                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                                        alt="Workflow"
+                                    />
+                                    <img
+                                        className="hidden lg:block h-8 w-auto"
+                                        src={logoUrl}
+                                        alt="Workflow"
+                                    />
+                                </div>
+                                <div className="hidden lg:block lg:ml-6">
+                                    <div className="flex space-x-4">
+                                        <NavBarLink
+                                            href="#"
+                                            label="Dashboard"
+                                            active
+                                        />
+                                        <NavBarLink href="#" label="Team" />
+                                        <NavBarLink href="#" label="Projects" />
+                                        <NavBarLink href="#" label="Calendar" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
+                                <SearchBar />
+                            </div>
+                            <div className="flex lg:hidden">
+                                {/* Mobile menu button */}
+                                <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                    <span className="sr-only">
+                                        Open main menu
+                                    </span>
+                                    {open ? (
+                                        <XIcon
+                                            className="block h-6 w-6"
+                                            aria-hidden="true"
+                                        />
+                                    ) : (
+                                        <MenuIcon
+                                            className="block h-6 w-6"
+                                            aria-hidden="true"
+                                        />
+                                    )}
+                                </Disclosure.Button>
+                            </div>
+                            <div className="hidden lg:block lg:ml-4">
+                                <div className="flex gap-2 items-center">
+                                    <ColorModeToggleButton />
+                                    <Profile />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-                        <DesktopNav items={NAV_ITEMS} />
-                    </Flex>
-                </Flex>
-
-                <Stack
-                    flex={{ base: 1, md: 0 }}
-                    justify={'flex-end'}
-                    direction={'row'}
-                    spacing={6}
-                >
-                    <ThemeToggleButton />
-                    <Profile />
-                </Stack>
-            </Flex>
-
-            <Collapse in={isOpen} animateOpacity>
-                <MobileNav items={NAV_ITEMS} />
-            </Collapse>
-        </Box>
+                    <Disclosure.Panel className="lg:hidden">
+                        <div className="px-2 pt-2 pb-3 space-y-1">
+                            <NavBarButtonLink
+                                href="#"
+                                label="Dashboard"
+                                active
+                            />
+                            <NavBarButtonLink href="#" label="Team" />
+                            <NavBarButtonLink href="#" label="Projects" />
+                            <NavBarButtonLink href="#" label="Calendar" />
+                        </div>
+                        <MobileProfile />
+                    </Disclosure.Panel>
+                </>
+            )}
+        </Disclosure>
     );
 }
