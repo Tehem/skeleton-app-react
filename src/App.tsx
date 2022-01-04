@@ -1,60 +1,35 @@
-import { FormattedMessage } from 'react-intl';
-import { Outlet, Link as ReactLink } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-import { motion } from 'framer-motion';
-import { Box, Flex, Image, Link, Text } from '@chakra-ui/react';
+import ProviderWithHistory from './components/Auth0/ProviderWithHistory';
+import { IntlWrapper } from './components/IntlWrapper/IntlWrapper';
 
-import NavBar from './components/NavBar/NavBar';
-import Footer from './components/Footer/Footer';
-
-import logo from './logo.svg';
+import About from './routes/about';
+import CookiePolicy from './routes/cookie';
+import Layout from './routes/layout';
+import NoMatch from './routes/noMatch';
+import PrivacyPolicy from './routes/privacy';
+import Profile from './routes/profile';
+import TermsOfUse from './routes/terms';
 
 function App() {
     return (
-        <Box>
-            <NavBar />
-            <Flex
-                as="header"
-                direction="column"
-                alignItems="center"
-                justifyContent="center"
-                h="100vh"
-                fontSize="3xl"
-            >
-                <motion.div
-                    animate={{ rotateZ: 360 }}
-                    transition={{
-                        repeat: Infinity,
-                        duration: 20,
-                        ease: 'linear',
-                    }}
-                >
-                    <Image src={logo} alt="logo" h="40vmin" />
-                </motion.div>
-                <Text>Hello Vite + React + Typescript + Chakra UI!</Text>
-
-                <Text>
-                    <FormattedMessage
-                        id="app.title"
-                        defaultMessage="default app message"
-                    />
-                </Text>
-                <Text>
-                    Edit <code>App.tsx</code> and save to test HMR updates.
-                </Text>
-
-                <nav>
-                    <Link to="/about" as={ReactLink}>
-                        <FormattedMessage
-                            id="routes.about"
-                            defaultMessage="About page"
-                        />
-                    </Link>
-                </nav>
-                <Outlet />
-            </Flex>
-            <Footer />
-        </Box>
+        <IntlWrapper>
+            <Router>
+                <ProviderWithHistory>
+                    <Routes>
+                        <Route path="/" element={<Layout />}>
+                            <Route path="about" element={<About />} />
+                            <Route path="terms" element={<TermsOfUse />} />
+                            <Route path="privacy" element={<PrivacyPolicy />} />
+                            <Route path="cookie" element={<CookiePolicy />} />
+                            <Route path="profile" element={<Profile />} />
+                            <Route path="*" element={<NoMatch />} />
+                        </Route>
+                    </Routes>
+                </ProviderWithHistory>
+            </Router>
+        </IntlWrapper>
     );
 }
 

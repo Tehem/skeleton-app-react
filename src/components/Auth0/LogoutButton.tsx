@@ -1,9 +1,10 @@
-import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { FormattedMessage } from 'react-intl';
 import { Button, MenuItem } from '@chakra-ui/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOut } from '@fortawesome/pro-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 const LogoutLabel = () => {
     return (
@@ -19,8 +20,18 @@ export const LogoutButton = () => {
 
     return (
         <Button
+            leftIcon={
+                <FontAwesomeIcon
+                    icon={faSignOut}
+                    size="lg"
+                    aria-hidden="true"
+                />
+            }
+            variant="outline"
+            size="lg"
+            fontSize="lg"
+            ml={2}
             onClick={() => logout({ returnTo: window.location.origin })}
-            leftIcon={<FontAwesomeIcon icon={faSignOut} />}
         >
             <LogoutLabel />
         </Button>
@@ -31,9 +42,16 @@ export const LogoutMenuItem = () => {
     const { logout } = useAuth0();
 
     return (
-        <MenuItem onClick={() => logout({ returnTo: window.location.origin })}>
-            <FontAwesomeIcon icon={faSignOut} />
-            &nbsp;
+        <MenuItem
+            icon={
+                <FontAwesomeIcon
+                    icon={faSignOut}
+                    size="lg"
+                    aria-hidden="true"
+                />
+            }
+            onClick={() => logout({ returnTo: window.location.origin })}
+        >
             <LogoutLabel />
         </MenuItem>
     );
