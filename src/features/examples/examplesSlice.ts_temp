@@ -1,0 +1,100 @@
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+
+// Create loadExamplesForItemId here.
+export const loadExamplesForItemId = createAsyncThunk(
+    'examples/loadExamplesForItemId',
+    async (itemId) => {
+        const item = await fetch(`api/items/${itemId}/examples`);
+        return await item.json();
+    }
+);
+
+// Create postExampleForItemId here.
+export const postExampleForItemId = createAsyncThunk(
+    'examples/postExampleForItemId',
+    async ({ itemId, example }) => {
+        const requestBody = JSON.stringify(example);
+        const response = await fetch(`api/items/${itemId}/examples`, {
+            method: 'POST',
+            body: requestBody,
+        });
+        return await response.json();
+    }
+);
+
+export const examplesSlice = createSlice({
+    name: 'examples',
+    initialState: {
+        // Add initial state properties here.
+        byItemId: {},
+        isLoadingExamples: false,
+        failedToLoadExamples: false,
+        createExampleIsPending: false,
+        failedToCreateExample: false,
+    },
+    // Add extraReducers here.
+    extraReducers: (builder) => {
+        builder
+            .addCase(loadExamplesForItemId.pending, (state, action) => {
+                return {
+                    ...state,
+                    isLoadingExamples: true,
+                    failedToLoadExamples: false,
+                };
+            })
+            .addCase(loadExamplesForItemId.fulfilled, (state, action) => {
+                const byItem = {
+                    ...state.byItem,
+                    [action.payload.itemId]: action.payload,
+                };
+                return {
+                    ...state,
+                    isLoadingExamples: false,
+                    failedToLoadExamples: false,
+                    byItem: byItem,
+                };
+            })
+            .addCase(loadExamplesForItemId.rejected, (state, action) => {
+                return {
+                    ...state,
+                    isLoadingExamples: false,
+                    failedToLoadExamples: true,
+                };
+            })
+
+            //post
+            .addCase(postExampleForItemId.pending, (state, action) => {
+                return {
+                    ...state,
+                    createExampleIsPending: true,
+                    failedToCreateExample: false,
+                };
+            })
+            .addCase(postExampleForItemId.fulfilled, (state, action) => {
+                const byItem = {
+                    ...state.byItem,
+                    [action.payload.itemId]: action.payload,
+                };
+                return {
+                    ...state,
+                    createExampleIsPending: false,
+                    failedToCreateExample: false,
+                    byItem: byItem,
+                };
+            })
+            .addCase(postExampleForItemId.rejected, (state, action) => {
+                return {
+                    ...state,
+                    createExampleIsPending: false,
+                    failedToCreateExample: true,
+                };
+            });
+    },
+});
+
+export const selectExamples = (state) => state.examples.byItemId;
+export const isLoadingExamples = (state) => state.examples.isLoadingExamples;
+export const createExampleIsPending = (state) =>
+    state.examples.createExampleIsPending;
+
+export default examplesSlice.reducer;

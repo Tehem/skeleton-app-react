@@ -1,0 +1,39 @@
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import ExampleForm from '../../components/ExampleForm';
+import ExampleList from '../../components/ExampleList';
+import { selectCurrentItem } from '../currentItem/currentItemSlice';
+import {
+    isLoadingExamples,
+    loadExamplesForItemId,
+    selectExamples,
+} from './examplesSlice';
+
+const Examples = () => {
+    const dispatch = useDispatch();
+    const item = useSelector(selectCurrentItem);
+    // Declare additional selected data here.
+    const examples = useSelector(selectExamples);
+    const examplesAreLoading = useSelector(isLoadingExamples);
+
+    // Dispatch loadExamplesForItemId with useEffect here.
+    useEffect(() => {
+        if (item !== undefined) dispatch(loadExamplesForItemId(item.id));
+    }, [dispatch, item]);
+
+    let examplesForItemId = [];
+    if (item !== undefined) examplesForItemId = examples[item.id];
+
+    if (examplesAreLoading) return <div>Loading Examples</div>;
+    if (!item) return null;
+
+    return (
+        <div className="examples-container">
+            <h3 className="examples-title">Examples</h3>
+            <ExampleList examples={examplesForItemId} />
+            <ExampleForm itemId={item.id} />
+        </div>
+    );
+};
+
+export default Examples;

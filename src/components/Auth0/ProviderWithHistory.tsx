@@ -1,13 +1,13 @@
+import { AppState, Auth0Provider } from '@auth0/auth0-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Auth0Provider } from '@auth0/auth0-react';
 
 import config from '../../config';
 
-const ProviderWithHistory = ({ children }) => {
+const ProviderWithHistory: React.FC = ({ children }) => {
     const navigate = useNavigate();
 
-    const onRedirectCallback = (appState) => {
+    const onRedirectCallback = (appState: AppState) => {
         navigate(appState?.returnTo || window.location.pathname);
     };
 
