@@ -1,16 +1,14 @@
 {
-  "app.title": "English Demo Application",
+  "app.auth.login": "Sign in",
+  "app.auth.logout": "Log out",
   "app.colorMode.dark": "Activate dark mode",
   "app.colorMode.light": "Activate light mode",
-  "app.notifications.view": "View notifications",
-  "app.auth.login": "Sign in",
-  "app.auth.logout": "Sign out",
   "app.language": "Language",
   "app.language.en-US": "English",
   "app.language.fr-FR": "French",
-  "routes.profile": "Your profile",
-  "routes.about": "About us",
-  "routes.termsOfUse": "Terms of use",
+  "app.notifications.view": "View notifications",
+  "routes.cookiePolicy": "Cookie policy",
   "routes.privacyPolicy": "Privacy policy",
-  "routes.cookiePolicy": "Cookie policy"
+  "routes.profile": "Your profile",
+  "routes.termsOfUse": "Terms of use"
 }

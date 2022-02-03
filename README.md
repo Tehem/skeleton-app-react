@@ -25,3 +25,11 @@ yarn dev
 ```command
 yarn storybook
 ```
+
+### Update labels
+
+To extract labels in language file and update translation files.
+
+```command
+yarn lang-extract-compile
+```

@@ -1,10 +1,8 @@
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react';
-import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
 import Loading from '../components/Loading/Loading';
-import { UserCard } from '../components/User/UserCard';
+import UserProfile from '../features/userProfile/UserProfile';
 
 const Profile = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -12,23 +10,8 @@ const Profile = () => {
         return <Loading />;
     }
 
-    if (isAuthenticated && user) {
-        return (
-            <Box
-                as="section"
-                bg={useColorModeValue('gray.100', 'gray.800')}
-                p={4}
-            >
-                <Heading as="h1" mb={4}>
-                    <FormattedMessage
-                        id="routes.profile"
-                        defaultMessage="Your profile"
-                    />
-                </Heading>
-
-                <UserCard user={user} />
-            </Box>
-        );
+    if (isAuthenticated && user && user.sub) {
+        return <UserProfile userId={user.sub} />;
     }
 
     return <div>Error loading profile...</div>;

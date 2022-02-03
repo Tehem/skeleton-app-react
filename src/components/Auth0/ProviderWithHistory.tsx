@@ -18,6 +18,7 @@ const ProviderWithHistory: React.FC = ({ children }) => {
             redirectUri={window.location.origin}
             onRedirectCallback={onRedirectCallback}
             audience={config.auth0.audience}
+            cacheLocation={'localstorage'}
         >
             {children}
         </Auth0Provider>

@@ -1,16 +1,14 @@
 {
-  "app.title": "Application demo francaise",
-  "app.colorMode.dark": "Activer le mode sombre",
-  "app.colorMode.light": "Activer le mode clair",
-  "app.notifications.view": "Voir les notifications",
   "app.auth.login": "Connexion",
   "app.auth.logout": "Déconnexion",
+  "app.colorMode.dark": "Activer le mode sombre",
+  "app.colorMode.light": "Activer le mode clair",
   "app.language": "Langue",
   "app.language.en-US": "Anglais",
   "app.language.fr-FR": "Français",
-  "routes.profile": "Votre profil",
-  "routes.about": "A propos de nous",
-  "routes.termsOfUse": "Conditions",
+  "app.notifications.view": "Voir les notifications",
+  "routes.cookiePolicy": "Politique Cookie",
   "routes.privacyPolicy": "Confidentialité",
-  "routes.cookiePolicy": "Politique Cookie"
+  "routes.profile": "Votre profil",
+  "routes.termsOfUse": "Conditions"
 }

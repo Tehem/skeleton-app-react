@@ -10,7 +10,7 @@ import { CardHeader } from '../Card/CardHeader';
 import { UserAvatar } from './UserAvatar';
 
 interface UserCardProps {
-    user: User;
+    user: User; // change this for API user type
 }
 
 export const UserCard = (props: UserCardProps) => {
@@ -23,20 +23,21 @@ export const UserCard = (props: UserCardProps) => {
                 spacing={{ base: '4', md: '10' }}
             >
                 <UserAvatar
-                    name={user.nickname}
-                    src={user.picture}
-                    isVerified
+                    name={user.name}
+                    src={user.avatar.mini}
+                    isVerified={user.online}
                 />
                 <CardContent>
-                    <CardHeader title={user.nickname || 'Unknown'} />
+                    <CardHeader title={user.name || 'Unknown'} />
                     <Text mt="1" fontWeight="medium">
                         {user.email}
                     </Text>
                     <Stack spacing="1" mt="2">
                         <HStack fontSize="sm">
                             <FontAwesomeIcon icon={faGlobe} />
-
-                            <Text>{user.website}</Text>
+                            <Text>
+                                {user.city}, {user.country}
+                            </Text>
                         </HStack>
                         <HStack fontSize="sm">
                             <FontAwesomeIcon icon={faCalendar} />

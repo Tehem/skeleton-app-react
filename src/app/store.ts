@@ -3,10 +3,13 @@ import colorModeReducer from '../components/ColorMode/ColorModeSlice';
 
 import intlWrapperReducer from '../components/IntlWrapper/IntlWrapperSlice';
 
+import userProfileReducer from '../features/userProfile/userProfileSlice';
+
 const store = configureStore({
     reducer: {
         i18n: intlWrapperReducer,
         colorMode: colorModeReducer,
+        userProfile: userProfileReducer,
     },
 });
 

@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "lang-extract-compile": "formatjs extract 'src/**/*.tsx' --out-file _labels.json --flatten --id-interpolation-pattern '[sha512:contenthash:base64:6]' && formatjs compile '_labels.json' --out-file src/lang/en-US.json && rm _labels.json",
     "test": "jest --coverage",
     "build": "tsc && vite build",
     "preview": "vite preview",
@@ -33,6 +34,7 @@
   "devDependencies": {
     "@babel/core": "^7.16.7",
     "@chakra-ui/storybook-addon": "^1.0.1",
+    "@formatjs/cli": "^4.8.1",
     "@storybook/addon-a11y": "^6.4.10",
     "@storybook/addon-actions": "^6.4.10",
     "@storybook/addon-essentials": "^6.4.10",

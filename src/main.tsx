@@ -9,8 +9,6 @@ import App from './App';
 import store from './app/store';
 import theme from './app/theme';
 
-import './index.css';
-
 ReactDOM.render(
     <React.StrictMode>
         <ColorModeScript initialColorMode={theme.config.initialColorMode} />
