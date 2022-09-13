@@ -11,7 +11,7 @@ const messages = defineMessages({
     },
 });
 
-export default () => {
+export const Notifications = () => {
     const intl = useIntl();
     return (
         <IconButton

@@ -20,7 +20,7 @@ import LoginButton from '../Auth0/LoginButton';
 import { LogoutMenuItem } from '../Auth0/LogoutButton';
 import ColorModeToggleButton from '../ColorMode/ColorModeToggleButton';
 import Loading from '../Loading/Loading';
-import Notifications from './Notifications';
+import { Notifications } from './Notifications';
 
 interface Props {
     isLoading: boolean;

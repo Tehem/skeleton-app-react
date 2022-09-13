@@ -15,6 +15,7 @@ const UserProfile = (props: { userId: string }) => {
     const { user, isLoading, hasError } = useAppSelector(
         (state) => state.userProfile
     );
+    const colorModeValue = useColorModeValue('gray.100', 'gray.800');
 
     useEffect(() => {
         (async () => {
@@ -27,7 +28,7 @@ const UserProfile = (props: { userId: string }) => {
                 console.error(e);
             }
         })();
-    }, [dispatch, getAccessTokenSilently]);
+    }, [dispatch, getAccessTokenSilently, props.userId]);
 
     const onRetryClick = () => {
         (async () => {
@@ -51,7 +52,7 @@ const UserProfile = (props: { userId: string }) => {
     }
 
     return (
-        <Box as="section" bg={useColorModeValue('gray.100', 'gray.800')} p={4}>
+        <Box as="section" bg={colorModeValue} p={4}>
             <Heading as="h1" mb={4}>
                 <FormattedMessage
                     id="routes.profile"

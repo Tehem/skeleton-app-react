@@ -15,6 +15,12 @@ import React, { isValidElement, ReactElement } from 'react';
 
 import { MobileNavContent } from './MobileNavContent';
 
+const Brand: React.FC = () => null;
+const Links: React.FC = () => null;
+const Search: React.FC = () => null;
+const UserProfile: React.FC = () => null;
+const UserMenu: React.FC = () => null;
+
 export const Template: React.FC = (props) => {
     const children = React.Children.toArray(
         props.children
@@ -95,12 +101,6 @@ export const Template: React.FC = (props) => {
         </Flex>
     );
 };
-
-const Brand: React.FC = () => null;
-const Links: React.FC = () => null;
-const Search: React.FC = () => null;
-const UserProfile: React.FC = () => null;
-const UserMenu: React.FC = () => null;
 
 export const NavBar = Object.assign(Template, {
     Brand,
